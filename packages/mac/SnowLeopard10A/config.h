@@ -352,7 +352,10 @@ static /**/const char *const rcsid[] = { (const char *)rcsid, "@(#)" msg }
 /* Define if el_init takes four arguments. */
 #define HAVE_FOUR_VALUED_EL_INIT 1
 
-/* Have -framework Security */
+/* Have -framework Security.
+   The SecFramework certificate/identity initialisers (lib/hx509/ks_keychain.c)
+   are built on public Security.framework APIs; only the macOS-only keychain
+   queries inside that file are #ifdef'd out on embedded platforms. */
 #define HAVE_FRAMEWORK_SECURITY 1
 
 /* Define to 1 if you have the `freeaddrinfo' function. */

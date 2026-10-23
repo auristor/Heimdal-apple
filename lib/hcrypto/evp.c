@@ -46,7 +46,7 @@
 #include <evp-hcrypto.h>
 #include <evp-cc.h>
 
-#include <CommonCrypto/CommonRandomSPI.h>
+#include <CommonCrypto/CommonRandom.h>
 
 #include <krb5-types.h>
 #include <roken.h>
@@ -1435,7 +1435,10 @@ EVP_CIPHER_CTX_rand_key(EVP_CIPHER_CTX *ctx, void *key)
 {
     if (ctx->cipher->flags & EVP_CIPH_RAND_KEY)
 	return EVP_CIPHER_CTX_ctrl(ctx, EVP_CTRL_RAND_KEY, 0, key);
-    if (CCRandomCopyBytes(kCCRandomDefault, key, ctx->key_len) != 0)
+    /* CCRandomCopyBytes()/kCCRandomDefault are macOS-only SPI; CCRandomGenerateBytes()
+       is the public equivalent on iOS/tvOS/watchOS and uses the same 0-on-success
+       convention. */
+    if (CCRandomGenerateBytes(key, ctx->key_len) != kCCSuccess)
 	return 0;
     return 1;
 }

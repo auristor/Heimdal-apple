@@ -39,6 +39,16 @@ extern bool isCertECDSA(CFTypeRef *);
 #if defined(HAVE_FRAMEWORK_SECURITY)
 #include <Security/Security.h>
 #include <Security/SecKeyPriv.h>
+
+/*
+ * kSecKeyAlgorithmRSASignatureDigestPKCS1v15MD5 is declared only in Apple's
+ * internal SDKs (the public headers list the SHA-family variants and Raw). The
+ * underlying value is a plain CFString, so spell it out here.
+ */
+#ifndef kSecKeyAlgorithmRSASignatureDigestPKCS1v15MD5
+#define kSecKeyAlgorithmRSASignatureDigestPKCS1v15MD5 \
+	CFSTR("rsaSignatureDigestPKCS1v15MD5")
+#endif
 #define kSecECCurveSecp256r1 CFSTR("73")
 
 
@@ -512,6 +522,7 @@ set_private_key_ecdsa(hx509_context context, hx509_cert cert, SecKeyRef pkey, vo
 	_hx509_abort("ECDSA_set_app_data");
 
     c = _hx509_get_cert(cert);
+    (void)c;
     // This calls the function that calls the sign func
     hx509_private_key_assign_ecdsa(key, ecdsa);
     _hx509_cert_set_key(cert, key);
@@ -934,6 +945,14 @@ _hx509_ks_keychain_register(hx509_context context)
 #endif
 }
 
+/*
+ * The remainder of this file builds the SecFramework certificate/identity
+ * initialisers. They all operate on Security.framework types (SecCertificateRef,
+ * SecIdentityRef, SecKeyRef, ...) and are therefore only meaningful where that
+ * framework is available -- see the HAVE_FRAMEWORK_SECURITY guard above.
+ */
+#if defined(HAVE_FRAMEWORK_SECURITY)
+
 static void
 kc_cert_release(hx509_cert cert, void *ctx)
 {
@@ -1112,3 +1131,5 @@ hx509_cert_init_SecFramework(hx509_context context, void * identity, hx509_cert 
 {
     return hx509_cert_init_SecFrameworkAuth(context, identity, cert, NULL);
 }
+
+#endif /* HAVE_FRAMEWORK_SECURITY */

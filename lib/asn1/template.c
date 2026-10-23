@@ -45,7 +45,13 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wlanguage-extension-token"
 
-const char *__crashreporter_info__ = NULL;
+/*
+ * Mark the definition weak: base/abort.c defines the same
+ * __crashreporter_info__ descriptor, and when both are linked as static
+ * archives into one binary the two definitions would collide. The strong
+ * definition from libheimbase then wins.
+ */
+__attribute__((weak)) const char *__crashreporter_info__ = NULL;
 asm(".desc ___crashreporter_info__, 0x10");
 static char crashreporter_info[100];
 

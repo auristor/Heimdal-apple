@@ -37,7 +37,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <CommonCrypto/CommonDigest.h>
-#include <CommonCrypto/CommonRandomSPI.h>
+#include <CommonCrypto/CommonRandom.h>
 #include <CommonCrypto/CommonHMAC.h>
 #include <assert.h>
 #include <roken.h>
@@ -430,7 +430,7 @@ generate_nonce(void)
     uint8_t rand[8];
     char *nonce;
     
-    if (CCRandomCopyBytes(kCCRandomDefault, rand, sizeof(rand)) != kCCSuccess)
+    if (CCRandomGenerateBytes(rand, sizeof(rand)) != kCCSuccess)
 	return NULL;
     
     if (rk_hex_encode(rand, sizeof(rand), &nonce) < 0)

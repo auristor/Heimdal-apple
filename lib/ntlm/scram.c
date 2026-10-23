@@ -380,8 +380,8 @@ generate_nonce(size_t len, heim_scram_data *result)
 
     p = malloc(len);
     heim_assert(p != NULL, "out of memory");
-    if (CCRandomCopyBytes(kCCRandomDefault, p, len) != 0)
-	heim_abort("CCRandomCopyBytes failes");
+    if (CCRandomGenerateBytes(p, len) != kCCSuccess)
+	heim_abort("CCRandomGenerateBytes fails");
     
     if (base64_encode(p, (int)len, &str) < 0)
 	heim_abort("base64 encode failed");

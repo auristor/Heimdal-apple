@@ -36,9 +36,9 @@
 #include "krb5_locl.h"
 #include <pkinit_asn1.h>
 #include "HeimCred.h"
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR
 #include <NEHelperClient.h>
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR */
 
 struct pa_info_data {
     krb5_enctype etype;
@@ -1478,7 +1478,7 @@ enc_chal_step(krb5_context context, krb5_init_creds_context ctx, void *pa_ctx, P
     }
 }
 
-#ifdef __APPLE_PRIVATE__
+#if HEIMDAL_HAVE_INTERNAL_SDK
 
 /*
  * SRP
@@ -2283,7 +2283,7 @@ struct patype {
 	pkinit_step_win,
 	pkinit_release
     },
-#ifdef __APPLE_PRIVATE__
+#if HEIMDAL_HAVE_INTERNAL_SDK
     {
 	KRB5_PADATA_SRP,
 	"SRP",
@@ -4267,14 +4267,20 @@ krb5_get_init_creds_password(krb5_context context,
 	if (ret)
 	    goto out;
     }
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR
     /*
      * Gross hack to make AppVPN to work
      */
     const char *delegate_bundle;
     pid_t pid = 0;
     
+    #if TARGET_OS_OSX
     delegate_bundle = HeimCredGetImpersonateBundle();
+#else
+    /* Credential-impersonation is a macOS-only feature (HeimCred talks to
+       a privileged mach service). */
+    delegate_bundle = NULL;
+#endif
 #if TARGET_OS_OSX
     CFDataRef token = HeimCredGetImpersonateAuditToken();
     if (token && CFDataGetLength(token) == sizeof(audit_token_t)) {
@@ -4312,7 +4318,7 @@ krb5_get_init_creds_password(krb5_context context,
 	    }
 	}
     }
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR */
     ret = krb5_init_creds_get(context, ctx);
 
     if (ret == 0)

@@ -169,6 +169,9 @@ gss_acquire_cred_ext(OM_uint32 *__nonnull minor_status,
 	gss_name_t desired_mech_name = GSS_C_NO_NAME;
 	OM_uint32 major2, junk;
 
+	/* desired_mech_name is recorded for diagnostics but not otherwise used. */
+	(void)desired_mech_name;
+
 	m = __gss_get_mechanism(&mechs->elements[i]);
 	if (!m)
 	    continue;

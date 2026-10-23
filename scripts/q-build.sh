@@ -28,7 +28,7 @@ test -d /Heimdal || sudo mkdir /Heimdal
     time xcodebuild install \
 	-target HeimdalCompilers \
 	-arch x86_64 \
-	-sdk macosx.internal \
+	-sdk macosx \
         OBJROOT=build/compilers \
     	TOOLCHAINS=$toolchain \
     	DT_TOOLCHAIN_DIR="${DT_TOOLCHAIN_DIR}" \
@@ -46,7 +46,7 @@ test -d /Heimdal || sudo mkdir /Heimdal
     time xcodebuild install \
 	-target HeimdalFrameworks \
 	-arch x86_64 \
-	-sdk macosx.internal \
+	-sdk macosx \
         OBJROOT=build/frameworks \
     	TOOLCHAINS=$toolchain \
     	DT_TOOLCHAIN_DIR="${DT_TOOLCHAIN_DIR}" \
@@ -66,7 +66,7 @@ test -d /Heimdal || sudo mkdir /Heimdal
     time xcodebuild install \
 	-target HeimdalFrameworksFoundation \
 	-arch x86_64 \
-	-sdk macosx.internal \
+	-sdk macosx \
         OBJROOT=build/foundation \
     	TOOLCHAINS=$toolchain \
     	DT_TOOLCHAIN_DIR="${DT_TOOLCHAIN_DIR}" \
@@ -90,7 +90,7 @@ ROOT2=/tmp/GSSTestApp.dst
     time xcodebuild install \
 	-target HeimdalExecutables \
 	-arch x86_64 \
-	-sdk macosx.internal \
+	-sdk macosx \
         OBJROOT=build/executables \
     	TOOLCHAINS=$toolchain \
     	DT_TOOLCHAIN_DIR="${DT_TOOLCHAIN_DIR}" \

@@ -34,12 +34,14 @@
  */
 
 #include "ntlm.h"
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* DSTG delegates digest computation to a helper service over Heimdal's
+   mach IPC, which needs bsm/libbsm.h -- absent from the public SDKs. */
 #include <heim-ipc.h>
+#endif
 #include <digest_asn1.h>
 
-/*
- *
- */
+#if HEIMDAL_HAVE_INTERNAL_SDK
 
 struct ntlmdgst {
     heim_ipc ipc;
@@ -341,6 +343,59 @@ dstg_type3(OM_uint32 *minor_status,
     *minor_status = ret;
     return GSS_S_FAILURE;
 }
+
+#else /* !HEIMDAL_HAVE_INTERNAL_SDK */
+
+/*
+ * DSTG credential delegation talks to a helper service over Heimdal's mach IPC,
+ * which is unavailable without Apple's internal SDKs. Keep the interface
+ * registered but report the feature as unsupported.
+ */
+static OM_uint32
+dstg_alloc(OM_uint32 *minor, void **ctx)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
+}
+
+static OM_uint32
+dstg_probe(OM_uint32 *minor_status, void *ctx, const char *realm, unsigned int *flags)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
+}
+
+static OM_uint32
+dstg_destroy(OM_uint32 *minor, void *ctx)
+{
+    return GSS_S_COMPLETE;
+}
+
+static OM_uint32
+dstg_ti(OM_uint32 *minor_status,
+	ntlm_ctx ntlmctx,
+	void *ctx,
+	const char *hostname,
+	const char *domain,
+	uint32_t *negNtlmFlags)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
+}
+
+static OM_uint32
+dstg_type3(OM_uint32 *minor_status,
+	   ntlm_ctx ntlmctx,
+	   void *ctx,
+	   const struct ntlm_type3 *type3,
+	   ntlm_cred acceptor_cred,
+	   uint32_t *flags,
+	   uint32_t *avflags,
+	   struct ntlm_buf *sessionkey,
+	   ntlm_name *name, struct ntlm_buf *uuid,
+	   struct ntlm_buf *pac)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
+}
+
+#endif /* !HEIMDAL_HAVE_INTERNAL_SDK */
 
 /*
  *

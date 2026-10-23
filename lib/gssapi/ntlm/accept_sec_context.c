@@ -283,7 +283,7 @@ _gss_ntlm_accept_sec_context
 	    return major_status;
 	*context_handle = (gss_ctx_id_t)ctx;
 	
-	if (CCRandomCopyBytes(kCCRandomDefault, ctx->challenge, sizeof(ctx->challenge))) {
+	if (CCRandomGenerateBytes(ctx->challenge, sizeof(ctx->challenge))) {
 	    *minor_status = HNTLM_ERR_RAND;
 	    return gss_mg_set_error_string(GSS_NTLM_MECHANISM, GSS_S_FAILURE,
 					   HNTLM_ERR_RAND, "rand failed");

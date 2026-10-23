@@ -29,8 +29,12 @@
 #include "mech_locl.h"
 #include <heim_threads.h>
 
-#ifdef __APPLE__
+#if defined(__APPLE__) && !defined(__APPLE_TARGET_EMBEDDED__)
+/* sys/codesign.h (csops/CS_RESTRICT) ships only in Apple's internal SDKs. */
 #include <sys/codesign.h>
+#define HEIMDAL_HAVE_CSOPS 1
+#else
+#define HEIMDAL_HAVE_CSOPS 0
 #endif
 
 #ifndef _PATH_GSS_MECH
@@ -244,14 +248,14 @@ _gss_load_config_mechs(void)
     gss_OID_desc	mech_oid;
     int		found;
 
-#if __APPLE__
+#if HEIMDAL_HAVE_CSOPS
     int flags = 0;
 
     if (csops(0, CS_OPS_STATUS, &flags, sizeof(flags)) != 0)
 	return;
     if (flags & CS_RESTRICT)
 	return;
-#endif /* __APPLE__ */
+#endif /* HEIMDAL_HAVE_CSOPS */
 
     fp = fopen(_PATH_GSS_MECH, "r");
     if (!fp) {
@@ -452,8 +456,14 @@ _gss_load_mech(void)
 	 */
 	add_builtin(__gss_pku2u_initialize());
 	add_builtin(__gss_iakerb_initialize());
+#if !defined(__APPLE_TARGET_EMBEDDED__)
+	/* The NTLM and SCRAM mechanisms cache their credentials in the HeimCred
+	   store, which is reached over a privileged mach XPC service and so is
+	   unavailable on iOS/tvOS/watchOS. Leave the mechanisms unregistered
+	   there rather than registering ones that cannot find a credential. */
 	add_builtin(__gss_ntlm_initialize());
 	add_builtin(__gss_scram_initialize());
+#endif
 	add_builtin(__gss_netlogon_initialize());
 	add_builtin(__gss_spnego_initialize());
 	add_builtin(__gss_krb5_initialize());

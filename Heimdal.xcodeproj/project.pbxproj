@@ -3863,6 +3863,13 @@
 		EBDB5BC810A39C68003FD0F9 /* com.apple.Kerberos.kpasswdd.plist in install launchd plist */ = {isa = PBXBuildFile; fileRef = EBDB5BC710A39C5D003FD0F9 /* com.apple.Kerberos.kpasswdd.plist */; };
 		EBDD7A1812E446E70047E909 /* HeimdalSystemConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EBDD7A1712E446E70047E909 /* HeimdalSystemConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBDE71361781B8DC00166F7C /* dh-sf.c in Sources */ = {isa = PBXBuildFile; fileRef = EBC2C39D12B44CAC00800135 /* dh-sf.c */; };
+		BE1A7004000000000000LTM4 /* ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A7001000000000000LTM1 /* ltm.c */; };
+		BE1A7005000000000000LTM5 /* dh-ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A7002000000000000LTM2 /* dh-ltm.c */; };
+		BE1A7006000000000000LTM6 /* rsa-ltm.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A7003000000000000LTM3 /* rsa-ltm.c */; };
+		BE1A7007000000000000DIG1 /* ccdigest.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A7008000000000000DIG2 /* ccdigest.c */; };
+		BE1A700B00000000000HXC3 /* ccmisc.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A7009000000000000HXC1 /* ccmisc.c */; };
+		BE1A700C00000000000HXC4 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A700A00000000000HXC2 /* rand.c */; };
+		BE1A700E00000000000HXC6 /* rand-unix.c in Sources */ = {isa = PBXBuildFile; fileRef = BE1A700D00000000000HXC5 /* rand-unix.c */; };
 		EBDE71391781F0C600166F7C /* rsa-sf.c in Sources */ = {isa = PBXBuildFile; fileRef = EBDE71381781F0C600166F7C /* rsa-sf.c */; };
 		EBDE9F4F10B7246200090FC8 /* gssapi_ntlm.h in Headers */ = {isa = PBXBuildFile; fileRef = EB24F6C30F318BA500B2533C /* gssapi_ntlm.h */; };
 		EBE0A33F17BA1CB000D0D805 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB6B2970F22B6CD006BD106 /* config.h */; };
@@ -4189,7 +4196,7 @@
 			outputFiles = (
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).c",
 			);
-			script = "cmp -s ${INPUT_FILE_PATH} ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c || cp ${INPUT_FILE_PATH} ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c";
+			script = "cmp -s ${INPUT_FILE_PATH} ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c || cp ${INPUT_FILE_PATH} ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c\n";
 		};
 		EB04E7520F346DCE009A5B13 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
@@ -4382,7 +4389,7 @@
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).c",
 				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).h",
 			);
-			script = "${INPUT_FILE_DIR}/../../ylwrap ${INPUT_FILE_PATH} y.tab.c ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c y.tab.h ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.h y.output  -- yacc -d";
+			script = "${INPUT_FILE_DIR}/../../ylwrap ${INPUT_FILE_PATH} y.tab.c ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.c y.tab.h ${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.h y.output  -- yacc -d\n";
 		};
 /* End PBXBuildRule section */
 
@@ -7663,6 +7670,111 @@
 			remoteGlobalIDString = EBFD837F1013C8770037D4DD;
 			remoteInfo = ts;
 		};
+		BE7B00000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB081F3E0FD60F5500F8373D;
+			remoteInfo = asn1-generate-template;
+		};
+		BE7B00000000000000000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB0F9BD0111E3A6300744852;
+			remoteInfo = build-export-data;
+		};
+		BE7B00000000000000000005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB0820530FD61CC200F8373D;
+			remoteInfo = gen-error-tables;
+		};
+		BE7B00000000000000000007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBFB58C50F2253FA0009D37C;
+			remoteInfo = vers;
+		};
+		BE7B00000000000000000009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB6B3DE0F22C493006BD106;
+			remoteInfo = roken;
+		};
+		BE7B0000000000000000000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB91CFB20F28446600CCDEA3;
+			remoteInfo = error-tables;
+		};
+		BE7B0000000000000000000D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB6B2B30F22B7FF006BD106;
+			remoteInfo = com_err;
+		};
+		BE7B0000000000000000000F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBFB59A40F2258020009D37C;
+			remoteInfo = heimdal-asn1;
+		};
+		BE7B00000000000000000011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB5727DC15DD966200BFC9E9;
+			remoteInfo = asn1-defs;
+		};
+		BE7B00000000000000000013 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBA241E30F2544EA00C3DF74;
+			remoteInfo = wind;
+		};
+		BE7B00000000000000000015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBC6F1F40F22CCF100D1AB35;
+			remoteInfo = krb5;
+		};
+		BE7B00000000000000000017 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBF569930F32D8A300501CE8;
+			remoteInfo = hx509;
+		};
+		BE7B00000000000000000019 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9537590FFC73820013822C;
+			remoteInfo = asn1-digest;
+		};
+		BE7B0000000000000000001B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB42F4EF116BCE2500FCDD8F;
+			remoteInfo = heimbase;
+		};
+		BE7C00000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB42F4EF116BCE2500FCDD8F;
+			remoteInfo = heimbase;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -8617,6 +8729,10 @@
 		EB224FEE128A1FD60093D709 /* test_enctypes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = test_enctypes; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB225068128A35610093D709 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		EB22506A128A38B80093D709 /* ccmisc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ccmisc.c; path = lib/hcrypto/ccmisc.c; sourceTree = "<group>"; };
+		BE1A7008000000000000DIG2 /* ccdigest.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ccdigest.c; path = lib/hcrypto/ccdigest.c; sourceTree = "<group>"; };
+		BE1A7009000000000000HXC1 /* ccmisc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ccmisc.c; path = lib/hcrypto/ccmisc.c; sourceTree = "<group>"; };
+		BE1A700A00000000000HXC2 /* rand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rand.c; path = lib/hcrypto/rand.c; sourceTree = "<group>"; };
+		BE1A700D00000000000HXC5 /* rand-unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rand-unix.c; path = lib/hcrypto/rand-unix.c; sourceTree = "<group>"; };
 		EB24F3430F31758500B2533C /* libkadm5srv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkadm5srv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB24F34A0F3175A300B2533C /* libkadm5clnt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libkadm5clnt.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB24F3530F3175EC00B2533C /* acl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = acl.c; path = lib/kadm5/acl.c; sourceTree = "<group>"; };
@@ -9570,6 +9686,9 @@
 		EBAE7CD112B2B70C002DA026 /* tommath_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tommath_class.h; path = lib/hcrypto/libtommath/tommath_class.h; sourceTree = "<group>"; };
 		EBAE7CD212B2B70C002DA026 /* tommath_superclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tommath_superclass.h; path = lib/hcrypto/libtommath/tommath_superclass.h; sourceTree = "<group>"; };
 		EBAE7CD312B2B70C002DA026 /* tommath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tommath.h; path = lib/hcrypto/libtommath/tommath.h; sourceTree = "<group>"; };
+		BE1A7001000000000000LTM1 /* ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ltm.c; path = lib/hcrypto/libtommath/ltm.c; sourceTree = "<group>"; };
+		BE1A7002000000000000LTM2 /* dh-ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dh-ltm.c; path = lib/hcrypto/dh-ltm.c; sourceTree = "<group>"; };
+		BE1A7003000000000000LTM3 /* rsa-ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = rsa-ltm.c; path = lib/hcrypto/rsa-ltm.c; sourceTree = "<group>"; };
 		EBAE7D5112B2B770002DA026 /* dh-ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "dh-ltm.c"; path = "lib/hcrypto/dh-ltm.c"; sourceTree = "<group>"; };
 		EBAE7D5212B2B770002DA026 /* rsa-ltm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "rsa-ltm.c"; path = "lib/hcrypto/rsa-ltm.c"; sourceTree = "<group>"; };
 		EBB1EA1116C459EC00DC776D /* client.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = client.c; path = plugins/KDCProxy/client.c; sourceTree = "<group>"; };
@@ -17388,6 +17507,7 @@
 			dependencies = (
 				EB3CC88214DCD026008E9787 /* PBXTargetDependency */,
 				EB3CC88414DCD026008E9787 /* PBXTargetDependency */,
+				BE7C00000000000000000002 /* PBXTargetDependency */,
 			);
 			name = hcrypto;
 			productName = hcrypto;
@@ -18241,8 +18361,21 @@
 			);
 			dependencies = (
 				8C3D072B23AD9A1C00FC23C0 /* PBXTargetDependency */,
-				EB953D7513CD1CC100045986 /* PBXTargetDependency */,
 				EBF81D99133057BD00DD4D3C /* PBXTargetDependency */,
+				BE7B00000000000000000002 /* PBXTargetDependency */,
+				BE7B00000000000000000004 /* PBXTargetDependency */,
+				BE7B00000000000000000006 /* PBXTargetDependency */,
+				BE7B00000000000000000008 /* PBXTargetDependency */,
+				BE7B0000000000000000000A /* PBXTargetDependency */,
+				BE7B0000000000000000000C /* PBXTargetDependency */,
+				BE7B0000000000000000000E /* PBXTargetDependency */,
+				BE7B00000000000000000010 /* PBXTargetDependency */,
+				BE7B00000000000000000012 /* PBXTargetDependency */,
+				BE7B00000000000000000014 /* PBXTargetDependency */,
+				BE7B00000000000000000016 /* PBXTargetDependency */,
+				BE7B00000000000000000018 /* PBXTargetDependency */,
+				BE7B0000000000000000001A /* PBXTargetDependency */,
+				BE7B0000000000000000001C /* PBXTargetDependency */,
 			);
 			name = "gss-mechglue";
 			productName = "gss-mechglue";
@@ -20162,6 +20295,13 @@
 				EB00F1E4103D6AFE00399574 /* ui.c in Sources */,
 				EB00F1FD103D6FD200399574 /* engine.c in Sources */,
 				EBDE71391781F0C600166F7C /* rsa-sf.c in Sources */,
+				BE1A7004000000000000LTM4 /* ltm.c in Sources */,
+				BE1A7005000000000000LTM5 /* dh-ltm.c in Sources */,
+				BE1A7006000000000000LTM6 /* rsa-ltm.c in Sources */,
+				BE1A7007000000000000DIG1 /* ccdigest.c in Sources */,
+				BE1A700B00000000000HXC3 /* ccmisc.c in Sources */,
+				BE1A700C00000000000HXC4 /* rand.c in Sources */,
+				BE1A700E00000000000HXC6 /* rand-unix.c in Sources */,
 				EB00F2F3103E1CC300399574 /* pkcs5.c in Sources */,
 				56BDCDA9231EEEB000B48D6D /* ecdsa.c in Sources */,
 				EB00F32C103E1E2B00399574 /* pkcs12.c in Sources */,
@@ -21036,7 +21176,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBA241EC0F25453200C3DF74 /* utf8.c in Sources */,
-				EB9CA11C1208CB0F0080EEEB /* icu.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -23906,6 +24045,81 @@
 			target = EBFD837F1013C8770037D4DD /* ts */;
 			targetProxy = EBFD83971013C9190037D4DD /* PBXContainerItemProxy */;
 		};
+		BE7B00000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB081F3E0FD60F5500F8373D /* asn1-generate-template */;
+			targetProxy = BE7B00000000000000000001 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB0F9BD0111E3A6300744852 /* build-export-data */;
+			targetProxy = BE7B00000000000000000003 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000006 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB0820530FD61CC200F8373D /* gen-error-tables */;
+			targetProxy = BE7B00000000000000000005 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000008 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBFB58C50F2253FA0009D37C /* vers */;
+			targetProxy = BE7B00000000000000000007 /* PBXContainerItemProxy */;
+		};
+		BE7B0000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB6B3DE0F22C493006BD106 /* roken */;
+			targetProxy = BE7B00000000000000000009 /* PBXContainerItemProxy */;
+		};
+		BE7B0000000000000000000C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB91CFB20F28446600CCDEA3 /* error-tables */;
+			targetProxy = BE7B0000000000000000000B /* PBXContainerItemProxy */;
+		};
+		BE7B0000000000000000000E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB6B2B30F22B7FF006BD106 /* com_err */;
+			targetProxy = BE7B0000000000000000000D /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000010 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBFB59A40F2258020009D37C /* heimdal-asn1 */;
+			targetProxy = BE7B0000000000000000000F /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000012 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB5727DC15DD966200BFC9E9 /* asn1-defs */;
+			targetProxy = BE7B00000000000000000011 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000014 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBA241E30F2544EA00C3DF74 /* wind */;
+			targetProxy = BE7B00000000000000000013 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000016 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBC6F1F40F22CCF100D1AB35 /* krb5 */;
+			targetProxy = BE7B00000000000000000015 /* PBXContainerItemProxy */;
+		};
+		BE7B00000000000000000018 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBF569930F32D8A300501CE8 /* hx509 */;
+			targetProxy = BE7B00000000000000000017 /* PBXContainerItemProxy */;
+		};
+		BE7B0000000000000000001A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB9537590FFC73820013822C /* asn1-digest */;
+			targetProxy = BE7B00000000000000000019 /* PBXContainerItemProxy */;
+		};
+		BE7B0000000000000000001C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB42F4EF116BCE2500FCDD8F /* heimbase */;
+			targetProxy = BE7B0000000000000000001B /* PBXContainerItemProxy */;
+		};
+		BE7C00000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB42F4EF116BCE2500FCDD8F /* heimbase */;
+			targetProxy = BE7C00000000000000000001 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -23952,8 +24166,25 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_XNU_SYS_HEADERS)",
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/base",
+					"$(SRCROOT)/lib",
+					"$(SRCROOT)/lib/krb5",
+					"$(SRCROOT)/lib/hcrypto",
+					"$(SRCROOT)/lib/asn1",
+					"$(SRCROOT)/lib/gssapi/gssapi",
+					"$(SRCROOT)/lib/gssapi",
+					"$(SRCROOT)/lib/hx509",
+					"$(SRCROOT)/lib/heimcred",
+					"$(SRCROOT)/lib/hdb",
+					"$(SRCROOT)/lib/ntlm",
+					"$(SRCROOT)/lib/wind",
+					"$(SRCROOT)/lib/roken",
+					"$(SRCROOT)/packages/mac/SnowLeopard10A",
+					"$(SRCROOT)/private-headers",
 				);
 				HEIMDAL_ASN1BASE_INSTALL_PATH = /usr/local;
 				HEIMDAL_MAN_DIR = "$(HEIMDAL_ROOT)/usr/share/man";
@@ -23981,9 +24212,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -23992,8 +24226,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "plugins/Reachability-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/KerberosFrameworkPlugins/;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.reachability;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.reachability;
 				PRODUCT_NAME = Reachability;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -24002,7 +24237,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -24011,8 +24249,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "Reachability-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/KerberosFrameworkPlugins/;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.reachability;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.reachability;
 				PRODUCT_NAME = Reachability;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = "Release-Embedded";
@@ -24128,8 +24367,25 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_XNU_SYS_HEADERS)",
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/base",
+					"$(SRCROOT)/lib",
+					"$(SRCROOT)/lib/krb5",
+					"$(SRCROOT)/lib/hcrypto",
+					"$(SRCROOT)/lib/asn1",
+					"$(SRCROOT)/lib/gssapi/gssapi",
+					"$(SRCROOT)/lib/gssapi",
+					"$(SRCROOT)/lib/hx509",
+					"$(SRCROOT)/lib/heimcred",
+					"$(SRCROOT)/lib/hdb",
+					"$(SRCROOT)/lib/ntlm",
+					"$(SRCROOT)/lib/wind",
+					"$(SRCROOT)/lib/roken",
+					"$(SRCROOT)/packages/mac/SnowLeopard10A",
+					"$(SRCROOT)/private-headers",
 				);
 				HEIMDAL_ASN1BASE_INSTALL_PATH = /usr/local;
 				HEIMDAL_MAN_DIR = "$(HEIMDAL_ROOT)/usr/share/man";
@@ -24332,14 +24588,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/compile_et",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "heimdal-compile_et";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				USE_HEADERMAP = YES;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
@@ -24415,17 +24677,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/asn1_compile",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-asn1_compile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
@@ -24444,16 +24711,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/slc",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-slc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
@@ -24643,7 +24915,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "$(HEIMDAL_TMPDIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(HEIMDAL_TMPDIR)",
+					"$(SRCROOT)/lib/hcrypto/libtommath",
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = hcrypto;
 				SKIP_INSTALL = YES;
@@ -24830,8 +25106,11 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_ENTITLEMENTS = "$(GSSCRED_ENTITLEMENTFILE)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -24860,8 +25139,10 @@
 				OTHER_LDFLAGS_MOBILE_KEYBAG = "";
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=iphoneos*]" = "-framework MobileKeyBag";
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=macosx*]" = "-framework MobileKeyBag";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSCred;
-				SDKROOT = iphoneos.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
@@ -24878,9 +25159,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimdal.exp";
@@ -24902,8 +25186,9 @@
 					"$(inherited)",
 					"$(HEIMDAL_STATISTICS_FRAMEWORK)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = Heimdal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = "non-global";
 			};
 			name = Debug;
@@ -24913,8 +25198,11 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/commonauth.exp";
@@ -24925,8 +25213,9 @@
 				INSTALLHDRS_SCRIPT_PHASE = YES;
 				INSTALL_PATH = "$(INDIGO_INSTALL_PATH_PREFIX)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 				INSTALL_PATH_ACTUAL = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = CommonAuth;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25040,9 +25329,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/gss.exp";
@@ -25056,8 +25348,9 @@
 					"$(HEIMDAL_OPENDIRECTORY_FRAMEWORK)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25065,8 +25358,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25074,6 +25370,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kinit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25081,7 +25378,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25091,6 +25391,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25098,12 +25399,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kgetcred;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25111,12 +25416,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kdestroy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25124,12 +25433,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kswitch;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25169,16 +25482,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = ktutil;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25186,12 +25504,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = hxtool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25199,12 +25521,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kcm;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Debug;
@@ -25213,12 +25539,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kcminit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25241,8 +25571,11 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CODE_SIGN_ENTITLEMENTS = lib/gssapi/gsstool.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -25253,7 +25586,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(HEIMDAL_HEIMBASE_LIBS)";
 				PRODUCT_NAME = gsstool;
-				SDKROOT = macosx.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25267,9 +25601,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25278,8 +25615,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "plugins/Reachability-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/KerberosFrameworkPlugins/;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.reachability;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.reachability;
 				PRODUCT_NAME = Reachability;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -25289,14 +25627,18 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = "plugins/GSSNotificationForwarder/GSSNotificationForwarder-Info.plist";
 				INSTALL_PATH = /System/Library/UserEventPlugins;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.Kerberos.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.Kerberos.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSNotificationForwarder;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = plugin;
 			};
 			name = Debug;
@@ -25325,17 +25667,21 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "plugins/GSSCredentialSelector/GSSCredentialSelector-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/GSSAPI;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.gsscredentialselector;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.gsscredentialselector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks",
@@ -25348,15 +25694,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "plugins/KDCProxy/KDCProxy-Prefix.pch";
 				INFOPLIST_FILE = "plugins/KDCProxy/KDCProxy-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/krb5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -25377,8 +25727,11 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -25389,6 +25742,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -25398,19 +25752,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kpasswd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25419,9 +25778,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "kdc/digest-service.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25429,6 +25790,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "digest-service";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25436,7 +25798,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25447,6 +25812,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = kdc;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25454,8 +25820,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
@@ -25463,11 +25832,13 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = kadmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Debug;
@@ -25476,19 +25847,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kadmind;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Debug;
@@ -25497,19 +25873,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kpasswdd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -25518,8 +25899,11 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimodadmin.exp";
@@ -25531,8 +25915,9 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "packages/mac/HeimODAdmin-Info.plist";
 				INSTALL_PATH = /System/Library/PrivateFrameworks;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = HeimODAdmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Debug;
@@ -25541,8 +25926,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -25550,6 +25938,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "hod-admin";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Debug;
@@ -25796,7 +26185,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 			};
 			name = Debug;
@@ -26159,7 +26548,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -26180,7 +26569,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -26201,7 +26590,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -26222,7 +26611,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -26257,6 +26646,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -26265,7 +26655,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -26295,6 +26685,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -26309,7 +26700,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -26338,6 +26729,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -26346,7 +26738,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 			};
 			name = "Release-Embedded";
 		};
@@ -26377,6 +26769,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -26403,9 +26796,9 @@
 					"$(GSSCRED_IPC_SERVER)",
 					"$(HEIMDAL_AKS_LIBS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.GSSCredTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.GSSCredTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -26441,6 +26834,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -26473,9 +26867,9 @@
 					"$(GSSCRED_IPC_SERVER)",
 					"$(HEIMDAL_AKS_LIBS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.GSSCredTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.GSSCredTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -26510,6 +26904,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -26536,9 +26931,9 @@
 					"$(GSSCRED_IPC_SERVER)",
 					"$(HEIMDAL_AKS_LIBS)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.GSSCredTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.GSSCredTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				SDKROOT = macosx;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -26556,7 +26951,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "$(HEIMDAL_TMPDIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(HEIMDAL_TMPDIR)",
+					"$(SRCROOT)/lib/hcrypto/libtommath",
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = hcrypto;
 				SKIP_INSTALL = YES;
@@ -26859,8 +27258,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
@@ -26868,11 +27270,13 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = kadmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Release;
@@ -26881,19 +27285,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kadmind;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Release;
@@ -26902,16 +27311,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = ktutil;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -27026,8 +27440,11 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_ENTITLEMENTS = "$(GSSCRED_ENTITLEMENTFILE)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -27056,8 +27473,10 @@
 				OTHER_LDFLAGS_MOBILE_KEYBAG = "";
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=iphoneos*]" = "-framework MobileKeyBag";
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=macosx*]" = "-framework MobileKeyBag";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSCred;
-				SDKROOT = iphoneos.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
@@ -27084,8 +27503,11 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_ENTITLEMENTS = "$(GSSCRED_ENTITLEMENTFILE)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -27115,7 +27537,9 @@
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=iphoneos*]" = "-framework MobileKeyBag";
 				"OTHER_LDFLAGS_MOBILE_KEYBAG[sdk=macosx*]" = "-framework MobileKeyBag";
 				PLIST_FILE_OUTPUT_FORMAT = binary;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSCred;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
@@ -27171,8 +27595,11 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimodadmin.exp";
@@ -27184,8 +27611,9 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "packages/mac/HeimODAdmin-Info.plist";
 				INSTALL_PATH = /System/Library/PrivateFrameworks;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = HeimODAdmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Release;
@@ -27194,7 +27622,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimodadmin.exp";
@@ -27206,8 +27637,9 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "packages/mac/HeimODAdmin-Info.plist";
 				INSTALL_PATH = /System/Library/PrivateFrameworks;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = HeimODAdmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = "Release-Embedded";
@@ -27295,8 +27727,25 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_XNU_SYS_HEADERS)",
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/base",
+					"$(SRCROOT)/lib",
+					"$(SRCROOT)/lib/krb5",
+					"$(SRCROOT)/lib/hcrypto",
+					"$(SRCROOT)/lib/asn1",
+					"$(SRCROOT)/lib/gssapi/gssapi",
+					"$(SRCROOT)/lib/gssapi",
+					"$(SRCROOT)/lib/hx509",
+					"$(SRCROOT)/lib/heimcred",
+					"$(SRCROOT)/lib/hdb",
+					"$(SRCROOT)/lib/ntlm",
+					"$(SRCROOT)/lib/wind",
+					"$(SRCROOT)/lib/roken",
+					"$(SRCROOT)/packages/mac/SnowLeopard10A",
+					"$(SRCROOT)/private-headers",
 				);
 				HEIMDAL_MAN_DIR = "$(INDIGO_INSTALL_PATH_PREFIX)/usr/local/share/man";
 				HEIMDAL_ROOT = "";
@@ -27412,14 +27861,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/compile_et",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "heimdal-compile_et";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				USE_HEADERMAP = YES;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
@@ -27495,17 +27950,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/asn1_compile",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-asn1_compile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
@@ -27524,16 +27984,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/slc",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-slc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
@@ -27638,7 +28103,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "$(HEIMDAL_TMPDIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(HEIMDAL_TMPDIR)",
+					"$(SRCROOT)/lib/hcrypto/libtommath",
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = hcrypto;
 				SKIP_INSTALL = YES;
@@ -27788,9 +28257,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimdal.exp";
@@ -27812,8 +28284,9 @@
 					"$(inherited)",
 					"$(HEIMDAL_STATISTICS_FRAMEWORK)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = Heimdal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = "non-global";
 			};
 			name = "Release-Embedded";
@@ -27928,9 +28401,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/gss.exp";
@@ -27944,8 +28420,9 @@
 					"$(HEIMDAL_OPENDIRECTORY_FRAMEWORK)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -27953,8 +28430,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -27962,6 +28442,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kinit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -27969,12 +28450,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kgetcred;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -27982,12 +28467,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kdestroy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -27995,12 +28484,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kswitch;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28008,7 +28501,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -28019,6 +28515,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = kdc;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28058,8 +28555,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
@@ -28067,11 +28567,13 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = kadmin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = "Release-Embedded";
@@ -28080,19 +28582,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kadmind;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = "Release-Embedded";
@@ -28101,16 +28608,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_SBIN_DIR)";
 				PRODUCT_NAME = ktutil;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28118,12 +28630,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = hxtool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28132,9 +28648,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "kdc/digest-service.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -28142,6 +28660,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "digest-service";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28149,13 +28668,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				OTHER_CODE_SIGN_FLAGS = "$(OTHER_CODE_SIGN_FLAGS_LIBRARY_VALIDATION)";
 				PRODUCT_NAME = kcm;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = "Release-Embedded";
@@ -28164,19 +28687,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kpasswd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28184,19 +28712,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kpasswdd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28204,12 +28737,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kcminit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28232,8 +28769,11 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CODE_SIGN_ENTITLEMENTS = lib/gssapi/gsstool.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -28244,6 +28784,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(HEIMDAL_HEIMBASE_LIBS)";
 				PRODUCT_NAME = gsstool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -28458,8 +28999,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -28467,6 +29011,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "hod-admin";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = "Release-Embedded";
@@ -28531,8 +29076,25 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_XNU_SYS_HEADERS)",
+					"$(SRCROOT)/include",
+					"$(SRCROOT)/base",
+					"$(SRCROOT)/lib",
+					"$(SRCROOT)/lib/krb5",
+					"$(SRCROOT)/lib/hcrypto",
+					"$(SRCROOT)/lib/asn1",
+					"$(SRCROOT)/lib/gssapi/gssapi",
+					"$(SRCROOT)/lib/gssapi",
+					"$(SRCROOT)/lib/hx509",
+					"$(SRCROOT)/lib/heimcred",
+					"$(SRCROOT)/lib/hdb",
+					"$(SRCROOT)/lib/ntlm",
+					"$(SRCROOT)/lib/wind",
+					"$(SRCROOT)/lib/roken",
+					"$(SRCROOT)/packages/mac/SnowLeopard10A",
+					"$(SRCROOT)/private-headers",
 				);
 				HEIMDAL_ASN1BASE_INSTALL_PATH = /usr/local;
 				HEIMDAL_MAN_DIR = "$(HEIMDAL_ROOT)/usr/share/man";
@@ -28735,6 +29297,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/compile_et",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -28821,6 +29384,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/asn1_compile",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -28849,6 +29413,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/slc",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -29044,7 +29609,11 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				HEADER_SEARCH_PATHS = "$(HEIMDAL_TMPDIR)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(HEIMDAL_TMPDIR)",
+					"$(SRCROOT)/lib/hcrypto/libtommath",
+				);
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = hcrypto;
 				SKIP_INSTALL = YES;
@@ -29572,6 +30141,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -29798,6 +30368,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -29811,9 +30382,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "kdc/digest-service.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -29821,6 +30394,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "digest-service";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-asan";
 		};
@@ -29855,6 +30429,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
@@ -29876,6 +30451,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 				);
@@ -29897,6 +30473,7 @@
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
@@ -30542,9 +31119,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/heimdal.exp";
@@ -30566,8 +31146,9 @@
 					"$(inherited)",
 					"$(HEIMDAL_STATISTICS_FRAMEWORK)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = Heimdal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = "non-global";
 			};
 			name = Release;
@@ -30576,7 +31157,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -30586,6 +31170,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -30593,7 +31178,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -30603,6 +31191,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -30665,8 +31254,11 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/commonauth.exp";
@@ -30677,8 +31269,9 @@
 				INSTALLHDRS_SCRIPT_PHASE = YES;
 				INSTALL_PATH = "$(INDIGO_INSTALL_PATH_PREFIX)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 				INSTALL_PATH_ACTUAL = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = CommonAuth;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -30687,7 +31280,10 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/commonauth.exp";
@@ -30698,8 +31294,9 @@
 				INSTALLHDRS_SCRIPT_PHASE = YES;
 				INSTALL_PATH = "$(INDIGO_INSTALL_PATH_PREFIX)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
 				INSTALL_PATH_ACTUAL = "$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = CommonAuth;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = "Release-Embedded";
 		};
@@ -30749,7 +31346,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 			};
 			name = Release;
@@ -30765,7 +31362,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 			};
 			name = "Release-asan";
@@ -30781,7 +31378,7 @@
 					"$(OTHER_LDFLAGS_MOBILE_KEYBAG)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos.internal;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 			};
 			name = "Release-Embedded";
@@ -30800,17 +31397,21 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "plugins/GSSCredentialSelector/GSSCredentialSelector-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/GSSAPI;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.gsscredentialselector;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.gsscredentialselector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks",
@@ -30824,17 +31425,21 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				INFOPLIST_FILE = "plugins/GSSCredentialSelector/GSSCredentialSelector-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/GSSAPI;
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.kerberos.gsscredentialselector;
+				PRODUCT_BUNDLE_IDENTIFIER = com.auristor.kerberos.gsscredentialselector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx.internal;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks",
@@ -30847,12 +31452,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kcminit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -30906,8 +31515,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/Frameworks/OpenDirectory.framework/Versions/A/Frameworks",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -30915,6 +31527,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "hod-admin";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Release;
@@ -31012,12 +31625,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kgetcred;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31025,12 +31642,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kdestroy;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31038,12 +31659,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kswitch;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31119,8 +31744,11 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -31131,6 +31759,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -31152,8 +31781,11 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -31164,6 +31796,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -31294,9 +31927,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "kdc/digest-service.entitlements";
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -31304,6 +31939,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = "digest-service";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31383,7 +32019,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -31394,6 +32033,7 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = kdc;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31493,8 +32133,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
@@ -31502,6 +32145,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kinit;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31557,15 +32201,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "plugins/KDCProxy/KDCProxy-Prefix.pch";
 				INFOPLIST_FILE = "plugins/KDCProxy/KDCProxy-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/krb5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -31574,15 +32222,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "plugins/KDCProxy/KDCProxy-Prefix.pch";
 				INFOPLIST_FILE = "plugins/KDCProxy/KDCProxy-Info.plist";
 				INSTALL_PATH = /System/Library/KerberosPlugins/krb5;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = "Release-Embedded";
@@ -31807,16 +32459,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/slc",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-slc";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
@@ -31863,9 +32520,12 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "$(HEIMDAL_TMPDIR)/gss.exp";
@@ -31879,8 +32539,9 @@
 					"$(HEIMDAL_OPENDIRECTORY_FRAMEWORK)",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSS;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31888,19 +32549,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = kpasswdd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31908,19 +32574,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 				);
 				GCC_MODEL_TUNING = G5;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/kadm",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_BIN_DIR)";
 				PRODUCT_NAME = kpasswd;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -31945,13 +32616,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				OTHER_CODE_SIGN_FLAGS = "$(OTHER_CODE_SIGN_FLAGS_LIBRARY_VALIDATION)";
 				PRODUCT_NAME = kcm;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};
 			name = Release;
@@ -32003,12 +32678,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /System/Library/PrivateFrameworks/Heimdal.framework/Helpers;
 				PRODUCT_NAME = hxtool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -32036,14 +32715,18 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = "plugins/GSSNotificationForwarder/GSSNotificationForwarder-Info.plist";
 				INSTALL_PATH = /System/Library/UserEventPlugins;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.Kerberos.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.Kerberos.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSNotificationForwarder;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = plugin;
 			};
 			name = Release;
@@ -32053,12 +32736,16 @@
 			baseConfigurationReference = EB4602FE1B9E5F540013F3DC /* lib.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = "plugins/GSSNotificationForwarder/GSSNotificationForwarder-Info.plist";
 				INSTALL_PATH = /System/Library/UserEventPlugins;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.apple.Kerberos.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.Kerberos.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = GSSNotificationForwarder;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = plugin;
 			};
 			name = "Release-Embedded";
@@ -32095,8 +32782,11 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CODE_SIGN_ENTITLEMENTS = lib/gssapi/gsstool.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/System/Library/PrivateFrameworks",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
@@ -32107,6 +32797,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(HEIMDAL_HEIMBASE_LIBS)";
 				PRODUCT_NAME = gsstool;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -32114,14 +32805,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/compile_et",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.auristor.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = "heimdal-compile_et";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				USE_HEADERMAP = YES;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
@@ -32156,17 +32853,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L2TGP62ZXS;
 				GCC_MODEL_TUNING = G5;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
 					"$(HEIMDAL_TMPDIR)/asn1_compile",
 					"$(HEIMDAL_TMPDIR)",
 				);
 				INSTALL_PATH = "$(HEIMDAL_HOST_TOOLCHAIN)";
 				PRODUCT_NAME = "heimdal-asn1_compile";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = NO;
 				WARNING_CFLAGS = "$(WARNING_CFLAGS_YL)";
 			};

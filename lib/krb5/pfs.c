@@ -35,12 +35,14 @@
 
 #include "krb5_locl.h"
 
+#include <pkinit_asn1.h>
+
+#if HEIMDAL_HAVE_INTERNAL_SDK
+
 #include <corecrypto/ccec.h>
 #include <corecrypto/ccec25519.h>
 
 #include <CommonCrypto/CommonRandomSPI.h>
-
-#include <pkinit_asn1.h>
 
 
 struct _krb5_pfs_data {
@@ -857,3 +859,66 @@ _krb5_pfs_rd_rep(krb5_context context, krb5_auth_context auth_context, AP_REP *a
 
     return ret;
 }
+
+#else /* !HEIMDAL_HAVE_INTERNAL_SDK */
+
+/*
+ * Perfect Forward Secrecy is implemented on top of corecrypto's ccec25519 /
+ * ccec-256 primitives, which ship only in Apple's internal SDKs. Where
+ * corecrypto is unavailable, keep the PFS entry points linkable but report the
+ * feature as unconfigured: _krb5_auth_con_setup_pfs() then leaves
+ * auth_context->pfs unset, so none of the call sites below ever invoke PFS.
+ */
+
+krb5_error_code
+_krb5_pfs_parse_pfs_config(krb5_context context, const char *name, const char *defval)
+{
+    return 0;
+}
+
+krb5_error_code
+_krb5_auth_con_setup_pfs(krb5_context context,
+			 krb5_auth_context auth_context,
+			 krb5_enctype enctype)
+{
+    return 0;
+}
+
+void
+_krb5_auth_con_free_pfs(krb5_context context, krb5_auth_context auth_context)
+{
+}
+
+krb5_error_code
+_krb5_pfs_ap_req(krb5_context context, krb5_auth_context auth_context,
+		 krb5_const_principal client, AuthorizationData *output)
+{
+    return KRB5KRB_AP_ERR_SKEW;
+}
+
+krb5_error_code
+_krb5_pfs_mk_rep(krb5_context context, krb5_auth_context auth_context, AP_REP *rep)
+{
+    return KRB5KRB_AP_ERR_SKEW;
+}
+
+krb5_error_code
+_krb5_pfs_rd_rep(krb5_context context, krb5_auth_context auth_context, AP_REP *ap_rep)
+{
+    return KRB5KRB_AP_ERR_SKEW;
+}
+
+krb5_error_code
+_krb5_pfs_rd_req(krb5_context context, krb5_auth_context auth_context)
+{
+    return KRB5KRB_AP_ERR_SKEW;
+}
+
+krb5_error_code
+_krb5_pfs_update_key(krb5_context context, krb5_auth_context auth_context,
+		     const char *direction, krb5_keyblock *subkey)
+{
+    return KRB5KRB_AP_ERR_SKEW;
+}
+
+#endif /* !HEIMDAL_HAVE_INTERNAL_SDK */

@@ -277,7 +277,9 @@ krb5_sendto_set_delegated_app(krb5_context context,
 	memcpy(ctx->delegated_uuid, uuid, sizeof(krb5_uuid));
     } else if (signingIdentity) {
 	memset(ctx->delegated_uuid, 0, sizeof(krb5_uuid));
-#if TARGET_OS_SIMULATOR
+#if !HEIMDAL_HAVE_INTERNAL_SDK
+	type = "no-ne";
+#elif TARGET_OS_SIMULATOR
 	type = "sim";
 #else
 	xpc_object_t uuid_array = NEHelperCacheCopyAppUUIDMapping(signingIdentity, NULL);
@@ -1078,7 +1080,7 @@ host_create(krb5_context context,
 	//prepare_app_vpn(context, ctx, hi, host->fd);
     }
 
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR
     /*
      * Hint to kernel what direction this connection is going
      */
@@ -1090,7 +1092,7 @@ host_create(krb5_context context,
 	(void)ne_session_set_socket_attributes(host->fd, hostname, NULL);
 	free(hostname);
     }
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR */
 
 #endif /* __APPLE__ */
 

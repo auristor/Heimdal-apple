@@ -38,7 +38,13 @@
 #include "locate_plugin.h"
 #if __APPLE__
 #include <dns_sd.h>
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* dns_sd_private.h (mDNSResponder's delegate-connection API: pid/uuid
+   delegation, kDNSServiceFlagsServiceIndex, kDNSServiceAttrAllowFailover) is
+   internal to Apple; the public iOS/tvOS/watchOS SDKs have only dns_sd.h.
+   Without it, delegated KD queries degrade to ordinary DNS lookups. */
 #include <dns_sd_private.h>
+#endif
 #endif
 
 static void append_host_hostinfo(krb5_context, struct krb5_krbhst_data *, struct krb5_krbhst_info *);
@@ -390,7 +396,7 @@ host_get_dns_service_id(krb5_context context,
 			DNSServiceFlags *flags)
 {
     int dns_service_id = 0;
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR
     nw_path_evaluator_t evaluator = NULL;
     nw_parameters_t parameters = NULL;
     nw_interface_t iface = NULL;
@@ -483,7 +489,7 @@ host_get_dns_service_id(krb5_context context,
     if (lname)
 	free(lname);
 
-#endif /* !TARGET_OS_SIMULATOR */
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && !TARGET_OS_SIMULATOR */
 
     return dns_service_id;
 }
@@ -788,6 +794,7 @@ SRVQueryCallback(DNSServiceRef sdRef,
 
 	srv_reply->addrinfo_queue = heim_retain(handle->addrinfo_queue);
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
 	error = DNSServiceCreateDelegateConnection(&srv_reply->srv_sd, handle->delegate_pid, handle->delegate_uuid);
 	if (error != kDNSServiceErr_NoError) {
 	    _krb5_debugx(query->context, 2,
@@ -795,6 +802,7 @@ SRVQueryCallback(DNSServiceRef sdRef,
 			 srv_reply->hostname, error);
 	    goto end;
 	}
+#endif
 
 	_krb5_debugx(query->context, 10, "setting queue");
 
@@ -921,11 +929,17 @@ srv_find_realm(krb5_context context, struct krb5_krbhst_data *handle,
 
     if (handle->main_sd == NULL) {
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
 	if (handle->flags & KD_DELEG_UUID) {
 	    error = DNSServiceCreateDelegateConnection(&handle->main_sd, handle->delegate_pid, handle->delegate_uuid);
 	} else {
 	    error = DNSServiceCreateConnection(&handle->main_sd);
 	}
+#else
+	/* Without mDNSResponder's private delegate API there is no per-process
+	   delegation, so a plain shared connection is the best available. */
+	error = DNSServiceCreateConnection(&handle->main_sd);
+#endif
 	if (error != kDNSServiceErr_NoError) {
 	    _krb5_debugx(context, 2,
 			 "Failed setting up search context for domain %s failed: %d",
@@ -954,7 +968,11 @@ srv_find_realm(krb5_context context, struct krb5_krbhst_data *handle,
 				  query->domain,
 				  kDNSServiceType_SRV,
 				  kDNSServiceClass_IN,
-				  &kDNSServiceAttrAllowFailover,
+	#if HEIMDAL_HAVE_INTERNAL_SDK
+			  &kDNSServiceAttrAllowFailover,
+#else
+			  NULL,	/* kDNSServiceAttrAllowFailover is internal to Apple */
+#endif
 				  SRVQueryCallback,
 				  query);
     if (error == kDNSServiceErr_NoError) {

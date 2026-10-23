@@ -1,5 +1,5 @@
 
-SDKROOT = macosx.internal
+SDKROOT = macosx
 
 HEIMDAL_HOST_TOOLCHAIN = $(DT_TOOLCHAIN_DIR)/usr/local/bin
 

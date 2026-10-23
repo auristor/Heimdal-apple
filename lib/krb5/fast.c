@@ -32,7 +32,12 @@
  */
 
 #include "krb5_locl.h"
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* FAST's optional "armor service" is reached over Heimdal's own mach IPC
+   (lib/ipc), which needs bsm/libbsm.h -- absent from the public SDKs. FAST
+   itself is unaffected: this only backs KRB5_FAST_AP_ARMOR_SERVICE. */
 #include <heim-ipc.h>
+#endif
 
 
 krb5_error_code
@@ -177,6 +182,7 @@ _krb5_make_fast_ap_fxarmor(krb5_context context,
     return ret;
 }
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
 static heim_base_once_t armor_service_once = HEIM_BASE_ONCE_INIT;
 static heim_ipc armor_service = NULL;
 
@@ -186,6 +192,7 @@ fast_armor_init_ipc(void *ctx)
     heim_ipc *ipc = ctx;
     heim_ipc_init_context("ANY:org.h5l.armor-service", ipc);
 }
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
 
 
 static krb5_error_code
@@ -195,7 +202,7 @@ make_fast_ap_fxarmor(krb5_context context,
 		     KrbFastArmor **armor)
 {
     KrbFastArmor *fxarmor = NULL;
-    krb5_error_code ret;
+    krb5_error_code ret = 0;
 
     ALLOC(fxarmor, 1);
     if (fxarmor == NULL) {
@@ -203,6 +210,7 @@ make_fast_ap_fxarmor(krb5_context context,
 	goto out;
     }
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
     if (state->flags & KRB5_FAST_AP_ARMOR_SERVICE) {
 	KERB_ARMOR_SERVICE_REPLY msg;
 	krb5_data request, reply;
@@ -257,6 +265,7 @@ make_fast_ap_fxarmor(krb5_context context,
 	if (ret)
 	    goto out;
     }
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
     
 
     *armor = fxarmor;

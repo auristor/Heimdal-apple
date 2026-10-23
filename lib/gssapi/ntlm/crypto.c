@@ -199,7 +199,7 @@ v1_sign_message(EVP_CIPHER_CTX *signkey,
     
     EVP_Cipher(signkey, out + 4, signature, sizeof(signature));
 
-    if (CCRandomCopyBytes(kCCRandomDefault, out + 4, 4))
+    if (CCRandomGenerateBytes(out + 4, 4))
 	return GSS_S_UNAVAILABLE;
 
     return 0;

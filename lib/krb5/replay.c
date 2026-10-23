@@ -33,8 +33,6 @@
 
 #include "krb5_locl.h"
 #include <vis.h>
-#include <corecrypto/ccdigest.h>
-#include <corecrypto/ccsha2.h>
 #include "heimqueue.h"
 
 typedef struct krb5_rc_type {
@@ -59,7 +57,7 @@ struct krb5_rcache_data {
 
 struct mem_entry{
     krb5_timestamp time;
-    uint8_t digest[CCSHA256_OUTPUT_SIZE];
+    uint8_t digest[CC_SHA256_DIGEST_LENGTH];
     HEIM_TAILQ_ENTRY(mem_entry) entries;
 };
 
@@ -74,22 +72,30 @@ static struct {
 };
 
 static void
-checksum_entry(krb5_donot_replay *auth, uint8_t digest[CCSHA256_OUTPUT_SIZE])
+checksum_entry(krb5_donot_replay *auth, uint8_t digest[CC_SHA256_DIGEST_LENGTH])
 {
-    const struct ccdigest_info *di = ccsha256_di();
-    ccdigest_di_decl(di, ctx);
+    CCDigestRef m;
     unsigned n;
 
-    ccdigest_init(di, ctx);
-    ccdigest_update(di, ctx, strlen(auth->crealm), auth->crealm);
-    for(n = 0; n < auth->cname.name_string.len; n++) {
-	ccdigest_update(di, ctx, strlen(auth->cname.name_string.val[n]), auth->cname.name_string.val[n]);
+    m = CCDigestCreate(kCCDigestSHA256);
+    if (m == NULL) {
+	memset(digest, 0, CC_SHA256_DIGEST_LENGTH);
+	return;
     }
 
-    ccdigest_update(di, ctx, sizeof(auth->ctime), &auth->ctime);
-    ccdigest_update(di, ctx, sizeof(auth->cusec), &auth->cusec);
+    CCDigestUpdate(m, auth->crealm, strlen(auth->crealm));
+    for(n = 0; n < auth->cname.name_string.len; n++) {
+	CCDigestUpdate(m, auth->cname.name_string.val[n],
+		       strlen(auth->cname.name_string.val[n]));
+    }
 
-    ccdigest_final(di, ctx, digest);
+    CCDigestUpdate(m, &auth->ctime, sizeof(auth->ctime));
+    CCDigestUpdate(m, &auth->cusec, sizeof(auth->cusec));
+
+    if (CCDigestFinal(m, digest) != 0)
+	memset(digest, 0, CC_SHA256_DIGEST_LENGTH);
+
+    CCDigestDestroy(m);
 }
 
 /*
@@ -200,7 +206,7 @@ mem_release(krb5_context context, krb5_rcache id)
 
 struct rc_entry{
     time_t stamp;
-    unsigned char data[CCSHA256_OUTPUT_SIZE];
+    unsigned char data[CC_SHA256_DIGEST_LENGTH];
 };
 
 static krb5_error_code

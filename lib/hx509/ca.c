@@ -1094,7 +1094,7 @@ ca_sign(hx509_context context,
 	    goto out;
 	}
 	/* XXX diffrent */
-	if (CCRandomCopyBytes(kCCRandomDefault, tbsc->serialNumber.data, tbsc->serialNumber.length) != 0) {
+	if (CCRandomGenerateBytes(tbsc->serialNumber.data, tbsc->serialNumber.length) != kCCSuccess) {
 	    ret = HX509_CRYPTO_OUT_OF_RANDOM;
 	    hx509_set_error_string(context, 0, ret, "Out of random");
 	    goto out;

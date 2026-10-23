@@ -38,6 +38,21 @@
 #ifndef __KRB5_LOCL_H__
 #define __KRB5_LOCL_H__
 
+/*
+ * config-apple.h unconditionally defines __APPLE_PRIVATE__, but that macro only
+ * reflects Apple's internal build convention. The headers it gates --
+ * corecrypto, sys/codesign.h, Security/SecKeyPriv.h -- live in Apple's
+ * internal SDKs and are absent from the public iOS/tvOS/watchOS SDKs.
+ *
+ * Define a positive test for those headers actually being available, so the
+ * private-API paths in this directory can be compiled out on public SDKs.
+ */
+#if defined(__APPLE_TARGET_EMBEDDED__)
+#define HEIMDAL_HAVE_INTERNAL_SDK 0
+#else
+#define HEIMDAL_HAVE_INTERNAL_SDK 1
+#endif
+
 #include <config.h>
 
 #include <errno.h>
@@ -167,13 +182,22 @@ struct sockaddr_dl;
 #if __APPLE__
 
 #include <xpc/xpc.h>
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* NetworkExtension's NEHelperClient/ne_session headers ship only in Apple's
+   internal SDKs. They back per-app-VPN interface discovery, which krbhst.c
+   guards the same way, so simply omit them elsewhere. */
 #include <NEHelperClient.h>
 #include <nw/private.h>
 #include <ne_session.h>
-#endif /* !TARGET_OS_SIMULATOR */
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
 
+/* libbsm supplies audit_token_t/audit_token_to_pid(), which krb5 uses only for
+   the macOS credential-impersonation path (all call sites are TARGET_OS_OSX).
+   libbsm is absent from the public iOS/tvOS/watchOS SDKs, so only pull it in
+   where it can actually be used. */
+#if TARGET_OS_OSX
 #include <bsm/libbsm.h>
+#endif
 
 #endif /* __APPLE__ */
 

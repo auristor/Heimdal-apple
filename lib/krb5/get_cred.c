@@ -179,7 +179,13 @@ get_cred_kdc(krb5_context context,
 	/*
 	 * Gross hack to make AppVPN to work
 	 */
-	delegate_bundle = HeimCredGetImpersonateBundle();
+	#if TARGET_OS_OSX
+    delegate_bundle = HeimCredGetImpersonateBundle();
+#else
+    /* Credential-impersonation is a macOS-only feature (HeimCred talks to
+       a privileged mach service). */
+    delegate_bundle = NULL;
+#endif
 #if TARGET_OS_OSX
 	CFDataRef token = HeimCredGetImpersonateAuditToken();
 	if (token && CFDataGetLength(token) == sizeof(audit_token_t)) {

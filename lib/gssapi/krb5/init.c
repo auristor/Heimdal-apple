@@ -64,7 +64,7 @@ destroy_context(void *ptr)
 static void
 once_func(void *ctx)
 {
-    int ret;
+    int ret = 0;
 
     _gsskrb5_kGSSICPassword = heim_string_create("kGSSICPassword");
     _gsskrb5_kGSSICCertificate = heim_string_create("kGSSICCertificate");
@@ -83,6 +83,7 @@ once_func(void *ctx)
     _gsskrb5_kGSSICAuthenticationContext = heim_string_create("kGSSICAuthenticationContext");
     
     HEIMDAL_key_create(&context_key, destroy_context, ret);
+    (void)ret;
 }
 
 krb5_error_code

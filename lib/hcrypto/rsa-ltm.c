@@ -44,7 +44,7 @@
 
 #include <roken.h>
 
-#include <CommonCrypto/CommonRandomSPI.h>
+#include <CommonCrypto/CommonRandom.h>
 
 #include "tommath.h"
 
@@ -57,7 +57,9 @@ random_num(mp_int *num, size_t len)
     p = malloc(len);
     if (p == NULL)
 	return 1;
-    if (RAND_bytes(p, len) != 1) {
+    /* CCRandomGenerateBytes() is the public, portable entry point; the
+       CCRandomCopyBytes() SPI is unavailable on iOS/tvOS/watchOS. */
+    if (CCRandomGenerateBytes(p, len) != kCCSuccess) {
 	free(p);
 	return 1;
     }
@@ -178,7 +180,7 @@ ltm_rsa_public_encrypt(int flen, const unsigned char* from,
 
     *p++ = 2;
 
-    if (CCRandomCopyBytes(kCCRandomDefault, p, padlen) != 0) {
+    if (CCRandomGenerateBytes(p, padlen) != kCCSuccess) {
 	mp_clear_multi(&e, &n, &enc, &dec, NULL);
 	free(p0);
 	return -4;
@@ -505,24 +507,6 @@ mpz2BN(mp_int *s)
     bn = BN_bin2bn(p, size, NULL);
     free(p);
     return bn;
-}
-
-static int
-random_num(mp_int *num, size_t len)
-{
-    unsigned char *p;
-
-    len = (len + 7) / 8;
-    p = malloc(len);
-    if (p == NULL)
-	return 1;
-    if (CCRandomCopyBytes(kCCRandomDefault, p, len) != 0) {
-	free(p);
-	return 1;
-    }
-    mp_read_unsigned_bin(num, p, len);
-    free(p);
-    return 0;
 }
 
 #define CHECK(f, v) if ((f) != (v)) { goto out; }

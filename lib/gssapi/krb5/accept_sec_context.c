@@ -35,7 +35,11 @@
 
 #include "gsskrb5_locl.h"
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* PKU2U reaches the KDC over Heimdal's mach IPC (lib/ipc), which needs
+   bsm/libbsm.h -- absent from the public SDKs. */
 #include <heim-ipc.h>
+#endif
 
 #define GKAS(name) static OM_uint32					\
 name(OM_uint32 *, gsskrb5_ctx, krb5_context, const gss_cred_id_t,	\
@@ -409,6 +413,7 @@ send_error_token(OM_uint32 *minor_status,
     return GSS_S_CONTINUE_NEEDED;
 }
 
+#if HEIMDAL_HAVE_INTERNAL_SDK
 static OM_uint32
 iakerb_acceptor_start(OM_uint32 * minor_status,
 		      gsskrb5_ctx ctx,
@@ -489,6 +494,10 @@ iakerb_acceptor_start(OM_uint32 * minor_status,
 }
 
 
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
+
+#if HEIMDAL_HAVE_INTERNAL_SDK
+
 static OM_uint32
 pku2u_acceptor_start(OM_uint32 * minor_status,
 		     gsskrb5_ctx ctx,
@@ -554,7 +563,41 @@ pku2u_acceptor_start(OM_uint32 * minor_status,
     
     *minor_status = 0;
     return GSS_S_FAILURE;
+
+#else /* !HEIMDAL_HAVE_INTERNAL_SDK */
+
+/*
+ * IAKERB and PKU2U obtain a service ticket from the local KDC over Heimdal's
+ * mach IPC, which is unavailable without Apple's internal SDKs. These stubs keep
+ * both mechanisms registered but fail cleanly if they are ever negotiated.
+ */
+static OM_uint32
+iakerb_acceptor_start(OM_uint32 * minor_status,
+		      gsskrb5_ctx ctx,
+		      const gss_buffer_t input_token_buffer,
+		      gss_OID * mech_type,
+		      gss_buffer_t output_token,
+		      OM_uint32 * ret_flags,
+		      OM_uint32 * time_rec,
+		      gss_cred_id_t * delegated_cred_handle)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
 }
+
+static OM_uint32
+pku2u_acceptor_start(OM_uint32 * minor_status,
+		     gsskrb5_ctx ctx,
+		     const gss_buffer_t input_token_buffer,
+		     gss_OID * mech_type,
+		     gss_buffer_t output_token,
+		     OM_uint32 * ret_flags,
+		     OM_uint32 * time_rec,
+		     gss_cred_id_t * delegated_cred_handle)
+{
+    return GSS_S_DEFECTIVE_TOKEN;
+}
+
+#endif /* !HEIMDAL_HAVE_INTERNAL_SDK */
 
 static OM_uint32
 gsskrb5_acceptor_start(OM_uint32 * minor_status,

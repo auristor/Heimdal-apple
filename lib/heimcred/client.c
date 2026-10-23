@@ -30,7 +30,6 @@
 #include <CoreFoundation/CFRuntime.h>
 #include <CoreFoundation/CFXPCBridge.h>
 #include <xpc/xpc.h>
-#include <xpc/private.h>
 #include <syslog.h>
 
 #include "heimcred.h"

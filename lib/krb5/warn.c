@@ -100,8 +100,11 @@ _warnerr(krb5_context context, int do_errtext,
     return 0;
 }
 
+/* The noreturn variants below (krb5_err, krb5_warn, krb5_fatal) never consume
+   "ret", so mark it explicitly unused rather than tripping
+   -Wunused-but-set-variable under -Werror. */
 #define FUNC(ETEXT, CODE, LEVEL)					\
-    krb5_error_code ret;						\
+    krb5_error_code ret __attribute__((unused));			\
     va_list ap;								\
     va_start(ap, fmt);							\
     ret = _warnerr(context, ETEXT, CODE, LEVEL, NULL, fmt, ap); 	\

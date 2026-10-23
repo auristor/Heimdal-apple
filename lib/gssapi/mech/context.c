@@ -560,11 +560,33 @@ _gss_mg_log_cred(int level,
 #endif
 
 
+#if defined(__APPLE_TARGET_EMBEDDED__)
+
+/*
+ * Do not load the system GSSAPI plugin directory here.
+ *
+ * On iOS/tvOS/watchOS this GSS implementation is not the one the system's
+ * GSSAPI plugins were built against. A plugin such as
+ * AppSSOReplacePlugin_iOS is handed a name allocated by this mechglue and
+ * passes it back into Apple's GSS, whose internal name representation has a
+ * different layout. gss_display_name() then dereferences the name as the
+ * wrong struct and the process crashes.
+ *
+ * On macOS this GSS *is* the system GSS, so the plugins are loaded there.
+ */
+static const char *paths[] = {
+    NULL
+};
+
+#else
+
 static const char *paths[] = {
     PLUGIN_PREFIX "/Library/KerberosPlugins/GSSAPI",
     PLUGIN_PREFIX "/System/Library/KerberosPlugins/GSSAPI",
     NULL
 };
+
+#endif
 
 static void
 load_plugins(void *ptr)

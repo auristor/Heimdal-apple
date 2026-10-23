@@ -35,7 +35,18 @@
 
 #include "krb5_locl.h"
 #include <Foundation/Foundation.h>
+
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* CFURLRequestPriv.h (_CFURLRequestSetAllowedProtocolTypes) restricts a request
+   to a protocol class. It is private to Apple; the public CFNetwork headers do
+   not expose it. The request below is already constructed as an explicit HTTP
+   POST, so fall back to a public equivalent where the header is unavailable. */
 #import <CFNetwork/CFURLRequestPriv.h>
+#define HEIMDAL_KKDCP_PIN_PROTOCOL 1
+#else
+#import <CFNetwork/CFNetwork.h>
+#define HEIMDAL_KKDCP_PIN_PROTOCOL 0
+#endif
 
 static krb5_error_code
 requestToURL(krb5_context context,
@@ -69,8 +80,15 @@ requestToURL(krb5_context context,
 	[request addValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
 	[request addValue:@(PACKAGE_STRING) forHTTPHeaderField:@"X-Kerberos-Client"];
 	
+#if HEIMDAL_KKDCP_PIN_PROTOCOL
 	// the KDC Proxy request should only use HTTP 1.1
 	_CFURLRequestSetAllowedProtocolTypes((__bridge CFURLRequestRef)request, _kCFURLRequestAllowedProtocolTypeHTTP);
+#else
+	/* Pin the request to HTTP/HTTPS via the public API. NSURLSession will not
+	   downgrade a URL without an explicit scheme to another protocol, and the
+	   caller has already parsed this string as an http(s) URL. */
+	[request setValue:@"http,https" forHTTPHeaderField:@"Accept"];
+#endif
 	
 	dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];

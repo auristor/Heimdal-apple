@@ -1404,12 +1404,14 @@ init_krb5_auth(OM_uint32 * minor_status,
      * Can't allow DNS canonalization when running in AppVPN since the
      * getaddrinfo() codepath doesn't support that.
      */
+#if TARGET_OS_OSX
     if (HeimCredGetImpersonateBundle()) {
 	_gss_mg_log(1, "gss-krb5: ISC disabled kerberos DNS canonalization");
 	allow_dns = 0;
     } else {
 	_gss_mg_log(1, "gss-krb5: ISC no AppVPN");
     }
+#endif
 
     if (_gss_mg_log_level(1)) {
 	char *str, *fullname;

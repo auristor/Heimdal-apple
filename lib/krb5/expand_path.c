@@ -307,7 +307,9 @@ _expand_userid(krb5_context context, PTYPE param, const char *postfix, char **st
 }
 
 #ifdef __APPLE__
-#include <bsm/audit_session.h>
+/* bsm/audit.h (auditinfo_addr_t/getaudit_addr) is public; the sibling
+   bsm/audit_session.h is only shipped in Apple's internal SDKs. */
+#include <bsm/audit.h>
 #endif
 
 static int

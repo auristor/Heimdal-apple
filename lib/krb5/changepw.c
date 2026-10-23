@@ -461,7 +461,13 @@ change_password_loop(krb5_context	context,
     const char *delegate_bundle;
     pid_t pid = 0;
     
+    #if TARGET_OS_OSX
     delegate_bundle = HeimCredGetImpersonateBundle();
+#else
+    /* Credential-impersonation is a macOS-only feature (HeimCred talks to
+       a privileged mach service). */
+    delegate_bundle = NULL;
+#endif
 #if TARGET_OS_OSX
     CFDataRef token = HeimCredGetImpersonateAuditToken();
     if (token && CFDataGetLength(token) == sizeof(audit_token_t)) {

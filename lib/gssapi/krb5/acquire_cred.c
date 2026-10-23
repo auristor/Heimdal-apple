@@ -34,15 +34,14 @@
  */
 
 #include "gsskrb5_locl.h"
+#if HEIMDAL_HAVE_INTERNAL_SDK
+/* libproc.h/sys/proc_info.h (proc_pidinfo) and NEHelperClient.h are
+   macOS-only and internal-SDK-only respectively. */
 #ifdef __APPLE__
-#include <sys/proc_info.h>
 #include <libproc.h>
-#import <bsm/libbsm.h>
-
-#if !TARGET_OS_SIMULATOR
+#include <sys/proc_info.h>
 #include <NEHelperClient.h>
 #endif
-
 #endif
 #include <heim_threads.h>
 #include <gssapi_spi.h>
@@ -1178,7 +1177,7 @@ _gss_krb5_acquire_cred_ext(OM_uint32 * minor_status,
 	    found = true;
 	    memcpy(uuid, heim_data_get_bytes(appUUID), sizeof(krb5_uuid));
 
-#if !TARGET_OS_SIMULATOR
+#if HEIMDAL_HAVE_INTERNAL_SDK
 	} else if (signingIdentity) {
 
 	    xpc_object_t uuid_array;
@@ -1198,9 +1197,10 @@ _gss_krb5_acquire_cred_ext(OM_uint32 * minor_status,
 		kret = EINVAL;
 		goto out;
 	    }
-#endif /* !TARGET_OS_SIMULATOR */
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
 	}
 	
+#if HEIMDAL_HAVE_INTERNAL_SDK
 	if (auditToken) {
 	    // else pull what we can from the audit token
 	    audit_token_t token;
@@ -1228,6 +1228,14 @@ _gss_krb5_acquire_cred_ext(OM_uint32 * minor_status,
 	    
 
 	}
+#else
+	/* Without libbsm there is no audit-token path to recover the peer UUID. */
+	if (auditToken) {
+	    krb5_set_error_message(context, EINVAL, "Failed getting audittoken");
+	    kret = EINVAL;
+	    goto out;
+	}
+#endif
 	
 	if (!found) {
 	    krb5_set_error_message(context, EINVAL, "No useful app source identity");

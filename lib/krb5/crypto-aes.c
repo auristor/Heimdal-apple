@@ -35,12 +35,17 @@
 
 /*
  * AES
+ *
+ * Both branches below implement CTS (ciphertext stealing) via hcrypto. The
+ * embedded branch used to drive CommonCrypto's CCCryptorCreateWithMode() with
+ * ccCBCCTS3, but that padding mode is only declared in CommonCryptorSPI.h,
+ * which is absent from the public iOS/tvOS/watchOS SDKs. CommonCrypto's public
+ * API offers no CTS padding, so the EVP path is used on every platform.
  */
 
-#ifdef __APPLE_TARGET_EMBEDDED__
+#if 0
 
 #include <CommonCrypto/CommonCryptor.h>
-#include <CommonCrypto/CommonCryptorSPI.h>
 
 /*
  * CommonCrypto based
@@ -324,7 +329,6 @@ struct _krb5_encryption_type _krb5_enctype_aes256_cts_hmac_sha1 = {
 /*
  * EVP based
  */
-
 static struct _krb5_key_type keytype_aes128 = {
     KRB5_ENCTYPE_AES128_CTS_HMAC_SHA1_96,
     "aes-128",

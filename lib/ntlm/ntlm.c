@@ -1360,7 +1360,7 @@ heim_ntlm_keyex_wrap(struct ntlm_buf *base_session,
 	return HNTLM_ERR_CRYPTO;
     }
 
-    if (CCRandomCopyBytes(kCCRandomDefault, session->data, session->length)) {
+    if (CCRandomGenerateBytes(session->data, session->length) != kCCSuccess) {
 	EVP_CIPHER_CTX_cleanup(&c);
 	heim_ntlm_free_buf(encryptedSession);
 	heim_ntlm_free_buf(session);
@@ -1589,7 +1589,7 @@ heim_ntlm_calculate_lm2(const void *key, size_t len,
 {
     unsigned char clientchallenge[8];
 
-    if (CCRandomCopyBytes(kCCRandomDefault, clientchallenge, sizeof(clientchallenge)))
+    if (CCRandomGenerateBytes(clientchallenge, sizeof(clientchallenge)) != kCCSuccess)
 	return HNTLM_ERR_RAND;
 
     /* calculate ntlmv2 key */
@@ -1646,7 +1646,7 @@ heim_ntlm_calculate_ntlm2(const void *key, size_t len,
 
     t = heim_ntlm_unix2ts_time(time(NULL));
 
-    if (CCRandomCopyBytes(kCCRandomDefault, clientchallenge, sizeof(clientchallenge)))
+    if (CCRandomGenerateBytes(clientchallenge, sizeof(clientchallenge)) != kCCSuccess)
 	return HNTLM_ERR_RAND;
 
     /* calculate ntlmv2 key */

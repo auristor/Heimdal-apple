@@ -2621,7 +2621,7 @@ hx509_crypto_set_random_key(hx509_crypto crypto, heim_octet_string *key)
 	crypto->key.length = 0;
 	return ENOMEM;
     }
-    if (CCRandomCopyBytes(kCCRandomDefault, crypto->key.data, crypto->key.length)) {
+    if (CCRandomGenerateBytes(crypto->key.data, crypto->key.length) != kCCSuccess) {
 	free(crypto->key.data);
 	crypto->key.data = NULL;
 	crypto->key.length = 0;
@@ -2661,7 +2661,7 @@ hx509_crypto_random_iv(hx509_crypto crypto, heim_octet_string *ivec)
 	return ENOMEM;
     }
 
-    if (CCRandomCopyBytes(kCCRandomDefault, ivec->data, ivec->length)) {
+    if (CCRandomGenerateBytes(ivec->data, ivec->length) != kCCSuccess) {
 	free(ivec->data);
 	ivec->data = NULL;
 	ivec->length = 0;

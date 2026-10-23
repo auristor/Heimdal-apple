@@ -38,6 +38,15 @@
 #endif
 #include <dirent.h>
 
+/*
+ * sys/codesign.h (csops/CS_* flags) and Security/CodeSigning.h
+ * (SecStaticCode*) live only in Apple's internal SDKs; the public
+ * iOS/tvOS/watchOS SDKs have neither. The code-signing checks built on them
+ * gate loading of *dynamically* loaded plugins, which does not apply on those
+ * platforms, so compile them out there.
+ */
+#if HEIMDAL_HAVE_INTERNAL_SDK
+
 #if __APPLE__
 #include <sys/codesign.h>
 #if TARGET_OS_OSX
@@ -46,6 +55,8 @@
 #import <Security/CodeSigning.h>
 #endif
 #endif
+
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
 
 
 struct krb5_plugin {
@@ -82,6 +93,7 @@ static int plugins_needs_scan = 1;
 
 static const char *sysplugin_dirs[] =  {
     PLUGIN_PREFIX LIBDIR "/plugin/krb5",
+
 #ifdef __APPLE__
     PLUGIN_PREFIX "/Library/KerberosPlugins/KerberosFrameworkPlugins",
     PLUGIN_PREFIX "/System/Library/KerberosPlugins/KerberosFrameworkPlugins",
@@ -119,7 +131,7 @@ static krb5_error_code
 loadlib(krb5_context context, char *path)
 {
     struct plugin *e;
-#if __APPLE__
+#if HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__
     int flags = 0;
 
     if (csops(0, CS_OPS_STATUS, &flags, sizeof(flags)) != 0) {
@@ -140,7 +152,7 @@ loadlib(krb5_context context, char *path)
 	return 0;
 	
     }
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__ */
 
     e = calloc(1, sizeof(*e));
     if (e == NULL) {
@@ -405,7 +417,7 @@ plug_dealloc(void *ptr)
 	dlclose(p->dsohandle);
 }
 
-#ifdef __APPLE__
+#if HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__
 krb5_boolean
 krb5_applesigned(krb5_context context, const char *path)
 {
@@ -465,7 +477,7 @@ cleanup:
     
     return applesigned;
 }
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__ */
 
 void
 krb5_load_plugins(krb5_context context, const char *name, const char **paths)
@@ -500,13 +512,13 @@ krb5_load_plugins(krb5_context context, const char *name, const char **paths)
     }
     heim_release(s);
 
-    #if __APPLE__
+    #if HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__
 	int flags = 0;
 
 	if (csops(0, CS_OPS_STATUS, &flags, sizeof(flags)) != 0) {
 	    return;
 	}
-    #endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK */
     
     for (di = paths; *di != NULL; di++) {
 	char *dir = NULL;
@@ -532,6 +544,7 @@ krb5_load_plugins(krb5_context context, const char *name, const char **paths)
 		continue;
 	    
 	    ret = 0;
+
 #ifdef __APPLE__
 	    { /* support loading bundles on MacOS */
 		size_t len = strlen(n);
@@ -552,6 +565,7 @@ krb5_load_plugins(krb5_context context, const char *name, const char **paths)
 		}
 	    }
     
+#if HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__
 	    /*
 	     * If restricted, only load plugins from safe locations or if signed by apple
 	     */
@@ -562,8 +576,8 @@ krb5_load_plugins(krb5_context context, const char *name, const char **paths)
 	    {
 		continue;  //skip this plugin
 	    }
-	    
-#endif
+#endif /* HEIMDAL_HAVE_INTERNAL_SDK && __APPLE__ */
+#endif /* __APPLE__ */
 	    if (ret < 0 || path == NULL)
 		ret = asprintf(&path, "%s/%s", dir, n);
 
