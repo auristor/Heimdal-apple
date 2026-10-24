@@ -33,8 +33,6 @@
 
 #include "krb5_locl.h"
 
-#ifndef HEIMDAL_SMALLER
-
 /*
  * Glue for MIT API
  */
@@ -428,5 +426,3 @@ krb5_free_default_realm(krb5_context context, krb5_realm realm)
 {
     return krb5_xfree(realm);
 }
-
-#endif /* HEIMDAL_SMALLER */
